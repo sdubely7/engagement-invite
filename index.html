@@ -2,417 +2,386 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saurabh & Shalini | Engagement Invitation</title>
-    <!-- Elegant Fonts to match the provided image -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Saurabh & Shalini | Premium Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* Base Variables based on image_8c8a20.jpg */
         :root {
-            --navy-blue: #08183A;
+            --navy: #08183A;
+            --navy-dark: #040b1c;
             --gold: #D4AF37;
+            --gold-light: #f3d778;
             --cream: #FDFBF7;
-            --font-serif: 'Playfair Display', serif;
-            --font-cursive: 'Great Vibes', cursive;
-            --font-sans: 'Montserrat', sans-serif;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(212, 175, 55, 0.2);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body, html {
-            height: 100%;
-            background-color: var(--navy-blue);
+            background-color: var(--navy-dark);
             color: var(--cream);
-            font-family: var(--font-sans);
-            overflow: hidden; /* Hide main scrollbar for custom snap scrolling */
-        }
-
-        /* Container for Scroll Snapping (Mobile App Feel) */
-        .invitation-container {
-            height: 100vh;
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* Common Page Styling */
-        .page {
-            height: 100vh;
-            width: 100vw;
-            scroll-snap-align: start;
+        /* --- Canvas Particle Background --- */
+        #particle-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at center, var(--navy) 0%, var(--navy-dark) 100%);
+        }
+
+        /* --- Welcome Envelope Screen --- */
+        #welcome-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--navy);
+            z-index: 9999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
-            padding: 2rem;
-            text-align: center;
-            /* Subtle texture overlay */
-            background-image: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 100%);
+            transition: opacity 1s ease, visibility 1s ease;
         }
-
-        /* Floral Corner Decor Placeholders */
-        .floral-corner {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            opacity: 0.6;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-        .top-left { top: 10px; left: 10px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); border-radius: 20px 0 0 0; }
-        .top-right { top: 10px; right: 10px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); border-radius: 0 20px 0 0; }
-        .bottom-left { bottom: 10px; left: 10px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); border-radius: 0 0 0 20px; }
-        .bottom-right { bottom: 10px; right: 10px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); border-radius: 0 0 20px 0; }
-
-        /* --- Page 1: The Cover (Based on your image) --- */
-        .ring-icon {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .cover-text {
-            font-family: var(--font-serif);
-            font-size: 1.6rem;
-            color: var(--gold);
-            line-height: 1.4;
-            margin-bottom: 1.5rem;
-        }
-        .cover-cursive {
-            font-family: var(--font-cursive);
-            font-size: 2.8rem;
-            color: var(--gold);
-            display: block;
-            margin: -5px 0;
-        }
-        .divider {
-            width: 50px;
-            height: 1px;
-            background-color: var(--gold);
-            margin: 1.5rem auto;
-        }
-        .invited-by {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 1.2rem;
-            color: var(--cream);
-            margin-bottom: 0.5rem;
-        }
-        .couple-names {
-            font-family: var(--font-serif);
-            font-size: 2.2rem;
-            color: var(--gold);
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
-
-        /* --- Page 2: The Couple --- */
-        .section-title {
-            font-family: var(--font-cursive);
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 2rem;
-        }
-        .profile-container {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .profile {
-            text-align: center;
-        }
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            background-color: rgba(255,255,255,0.1);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-        .profile-name {
-            font-family: var(--font-serif);
-            font-size: 1.5rem;
-            color: var(--cream);
-        }
-
-        /* --- Page 3: Event Details --- */
-        .event-details h3 {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-        .event-details p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        /* --- Page 4: Interactive Countdown --- */
-        .countdown {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .time-box {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 1rem;
-            border-radius: 10px;
-            min-width: 70px;
-        }
-        .time-box span {
-            font-family: var(--font-serif);
-            font-size: 2rem;
-            color: var(--gold);
-            display: block;
-        }
-        .time-box p {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 0.5rem;
-        }
-
-        /* --- Page 5: RSVP --- */
-        .rsvp-form input, .rsvp-form select {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 1rem;
+        .open-btn {
             background: transparent;
             border: 1px solid var(--gold);
-            color: var(--cream);
-            font-family: var(--font-sans);
-            outline: none;
-        }
-        .rsvp-form input::placeholder {
-            color: rgba(253, 251, 247, 0.5);
-        }
-        .btn {
-            background: var(--gold);
-            color: var(--navy-blue);
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-family: var(--font-serif);
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            width: 100%;
-        }
-        .btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
             color: var(--gold);
-            font-size: 1.5rem;
-            opacity: 0.7;
+            padding: 15px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            animation: pulseBtn 2s infinite;
         }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-            40% { transform: translateY(-15px) translateX(-50%); }
-            60% { transform: translateY(-7px) translateX(-50%); }
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+        .open-btn:hover { background: var(--gold); color: var(--navy); }
+
+        /* --- Floating Audio Player --- */
+        #music-toggle {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--gold);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            cursor: pointer;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 1.5rem;
+            animation: spin 4s linear infinite;
+            opacity: 0; transition: opacity 1s ease;
+        }
+        .music-playing { animation-play-state: running !important; }
+        .music-paused { animation-play-state: paused !important; text-decoration: line-through; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* --- Layout & Glassmorphism --- */
+        .main-content {
+            position: relative; z-index: 10;
+            display: none; /* Hidden until welcome screen is clicked */
+        }
+        
+        section {
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            padding: 4rem 2rem;
+            text-align: center;
         }
 
-        /* Animations triggered on scroll */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.2);
         }
-        .fade-in.appear {
-            opacity: 1;
-            transform: translateY(0);
+
+        /* --- Typography --- */
+        h1, h2 { font-family: 'Playfair Display', serif; color: var(--gold); }
+        .cursive { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--gold-light); font-weight: normal; margin: -10px 0;}
+        .subtitle { font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; color: var(--cream); margin-bottom: 1.5rem; font-weight: 300; }
+        
+        .names-main { font-size: 3rem; margin-top: 1rem; line-height: 1.2; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);}
+        .divider { width: 60px; height: 1px; background: var(--gold); margin: 2rem auto; }
+
+        /* --- Advanced Scroll Animations --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+
+        /* --- Countdown --- */
+        .countdown { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .time-box {
+            background: rgba(0,0,0,0.2); border: 1px solid var(--gold);
+            border-radius: 10px; width: 70px; height: 80px;
+            display: flex; flex-direction: column; justify-content: center;
         }
+        .time-box span { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); }
+        .time-box p { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- Buttons --- */
+        .action-btn {
+            background: var(--gold); color: var(--navy);
+            border: none; padding: 15px 30px; font-family: 'Montserrat', sans-serif;
+            font-weight: 600; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;
+            border-radius: 5px; cursor: pointer; text-decoration: none;
+            display: inline-block; margin-top: 1.5rem; transition: transform 0.3s ease;
+        }
+        .action-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        
+        .outline-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+        .outline-btn:hover { background: rgba(212, 175, 55, 0.1); }
+
     </style>
 </head>
 <body>
 
-    <div class="invitation-container" id="container">
+    <!-- Particle Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Welcome / Unboxing Screen -->
+    <div id="welcome-screen">
+        <h2 style="margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 2px;">You're Invited</h2>
+        <button class="open-btn" onclick="startExperience()">Open Invitation</button>
+    </div>
+
+    <!-- Background Audio (Placeholder for a romantic instrumental track) -->
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/02/07/audio_651a2d4807.mp3?filename=romantic-piano-112135.mp3" type="audio/mpeg">
+    </audio>
+    <div id="music-toggle" class="music-paused" onclick="toggleMusic()">🎵</div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
         
-        <!-- PAGE 1: COVER (Recreated from image_8c8a20.jpg) -->
-        <section class="page" id="page1">
-            <div class="floral-corner top-left"></div>
-            <div class="floral-corner top-right"></div>
-            <div class="floral-corner bottom-left"></div>
-            <div class="floral-corner bottom-right"></div>
-            
-            <div class="fade-in">
-                <!-- Placeholder for the beautiful diamond ring in the image -->
-                <div class="ring-icon">💍</div>
+        <!-- PAGE 1: HERO -->
+        <section id="hero">
+            <div class="glass-card reveal">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">💍</div>
+                <p class="subtitle reveal delay-1">We're delighted to celebrate this</p>
+                <div class="cursive reveal delay-2">new chapter</div>
+                <p class="subtitle reveal delay-1" style="margin-top: 1rem;">with you!</p>
                 
-                <p class="cover-text">
-                    We're delighted to celebrate this<br>
-                    <span class="cover-cursive">new chapter</span><br>
-                    with you !
-                </p>
+                <div class="divider reveal delay-2"></div>
                 
-                <div class="divider"></div>
-                
-                <p class="invited-by">invited by</p>
-                <h1 class="couple-names">Saurabh & Shalini</h1>
+                <p class="reveal delay-2" style="font-style: italic; font-size: 0.9rem; opacity: 0.8;">invited by</p>
+                <h1 class="names-main reveal delay-3">Saurabh<br><span style="font-size: 2rem; color: var(--gold-light);">&</span><br>Shalini</h1>
             </div>
-            <div class="scroll-indicator">↓</div>
+            <div class="reveal delay-3" style="position: absolute; bottom: 30px; font-size: 0.8rem; letter-spacing: 2px; animation: pulseBtn 2s infinite;">Scroll Down ↓</div>
         </section>
 
-        <!-- PAGE 2: THE COUPLE -->
-        <section class="page" id="page2">
-            <div class="fade-in">
-                <h2 class="section-title">Two Souls, One Heart</h2>
-                <div class="profile-container">
-                    <div class="profile">
-                        <div class="profile-img">🤵🏽‍♂️</div>
-                        <h3 class="profile-name">Saurabh</h3>
-                    </div>
-                    <div class="profile">
-                        <div style="font-family: var(--font-cursive); font-size: 3rem; color: var(--gold); line-height: 120px;">&</div>
-                    </div>
-                    <div class="profile">
-                        <div class="profile-img">👰🏽‍♀️</div>
-                        <h3 class="profile-name">Shalini</h3>
-                    </div>
+        <!-- PAGE 2: THE DETAILS -->
+        <section id="details">
+            <div class="glass-card reveal">
+                <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">The Celebration</h2>
+                <div class="cursive" style="font-size: 2.5rem; margin-bottom: 2rem;">Ring Ceremony</div>
+                
+                <div class="reveal delay-1">
+                    <h3 style="color: var(--gold-light); font-size: 1.2rem; margin-bottom: 0.5rem;">When</h3>
+                    <p style="font-size: 1.1rem;">Saturday, October 24, 2026<br>7:00 PM Onwards</p>
                 </div>
-                <p style="margin-top: 2rem; font-weight: 300; max-width: 400px; line-height: 1.6;">
-                    Together with their families, they invite you to share in their joy as they exchange rings and promises.
-                </p>
+                
+                <div class="divider reveal delay-1" style="width: 30px;"></div>
+                
+                <div class="reveal delay-2">
+                    <h3 style="color: var(--gold-light); font-size: 1.2rem; margin-bottom: 0.5rem;">Where</h3>
+                    <p style="font-size: 1.1rem;">The Grand Taj Palace<br>Diplomatic Enclave, Chanakyapuri<br>New Delhi, India</p>
+                </div>
+
+                <div class="reveal delay-3" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://maps.google.com/?q=Taj+Palace+New+Delhi" target="_blank" class="action-btn outline-btn">View Map</a>
+                    <!-- Pro feature: Generate calendar invite -->
+                    <button onclick="downloadICS()" class="action-btn">Save the Date</button>
+                </div>
             </div>
-            <div class="scroll-indicator">↓</div>
         </section>
 
-        <!-- PAGE 3: EVENT DETAILS -->
-        <section class="page" id="page3">
-            <div class="fade-in event-details">
-                <h2 class="section-title">The Celebration</h2>
+        <!-- PAGE 3: COUNTDOWN & RSVP -->
+        <section id="rsvp">
+            <div class="glass-card reveal">
+                <h2>Counting Down</h2>
+                <p style="opacity: 0.8; margin-top: 5px;">Until the moment we say "Yes"</p>
                 
-                <h3>Ring Ceremony</h3>
-                <p>
-                    <strong>Saturday, October 24, 2026</strong><br>
-                    7:00 PM Onwards
-                </p>
-                
-                <div class="divider"></div>
-                
-                <h3>Venue</h3>
-                <p>
-                    <strong>The Grand Taj Palace</strong><br>
-                    Diplomatic Enclave, Chanakyapuri<br>
-                    New Delhi, India
-                </p>
-                <br>
-                <!-- Interactive button to open Maps -->
-                <a href="https://maps.google.com" target="_blank" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px;">View on Google Maps</a>
-            </div>
-            <div class="scroll-indicator">↓</div>
-        </section>
-
-        <!-- PAGE 4: COUNTDOWN -->
-        <section class="page" id="page4">
-            <div class="fade-in">
-                <h2 class="section-title">Counting Down</h2>
-                <p>Until the moment we say "Yes"</p>
-                
-                <div class="countdown" id="countdown">
+                <div class="countdown reveal delay-1" id="countdown">
                     <div class="time-box"><span id="days">00</span><p>Days</p></div>
                     <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
-                    <div class="time-box"><span id="minutes">00</span><p>Mins</p></div>
-                    <div class="time-box"><span id="seconds">00</span><p>Secs</p></div>
+                    <div class="time-box"><span id="mins">00</span><p>Mins</p></div>
+                    <div class="time-box"><span id="secs">00</span><p>Secs</p></div>
                 </div>
-            </div>
-            <div class="scroll-indicator">↓</div>
-        </section>
 
-        <!-- PAGE 5: RSVP -->
-        <section class="page" id="page5">
-            <div class="fade-in" style="width: 100%; max-width: 400px;">
-                <h2 class="section-title">RSVP</h2>
-                <p style="margin-bottom: 2rem;">Please let us know if you can make it!</p>
+                <div class="divider reveal delay-2"></div>
+
+                <h2 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 1rem;">Bless Us</h2>
+                <p class="reveal delay-2" style="font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5;">Your presence will make our special day complete. Please share your blessings with us.</p>
                 
-                <form class="rsvp-form" onsubmit="submitRSVP(event)">
-                    <input type="text" placeholder="Your Full Name" required>
-                    <select required>
-                        <option value="" disabled selected>Will you attend?</option>
-                        <option value="yes">Joyfully Accept</option>
-                        <option value="no">Regretfully Decline</option>
-                    </select>
-                    <input type="number" placeholder="Number of Guests" min="1" max="5">
-                    <button type="submit" class="btn">Send RSVP</button>
-                </form>
+                <a href="https://wa.me/?text=Hi%20Saurabh%20%26%20Shalini!%20Congratulations%20on%20the%20engagement.%20I%20will%20be%20there!" target="_blank" class="action-btn reveal delay-3" style="width: 100%; border-radius: 30px;">RSVP via WhatsApp</a>
             </div>
         </section>
-
     </div>
 
     <script>
-        // UI Interaction 1: Intersection Observer for scroll animations
-        const faders = document.querySelectorAll('.fade-in');
-        
-        const appearOptions = {
-            threshold: 0.3,
-            rootMargin: "0px 0px -50px 0px"
-        };
+        // --- 1. Experience & Audio Manager ---
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+        let isPlaying = false;
 
-        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('appear');
-            });
-        }, appearOptions);
+        function startExperience() {
+            document.getElementById('welcome-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('welcome-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('music-toggle').style.opacity = '1';
+                
+                // Initialize animations and particles once loaded
+                initScrollObserver();
+                initParticles();
+                
+                // Try playing music (Browsers allow this because it's inside an onClick event)
+                bgMusic.volume = 0.4;
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.classList.replace('music-paused', 'music-playing');
+                }).catch(e => console.log("Audio play prevented by browser"));
+            }, 1000);
+        }
 
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
-        });
-
-        // UI Interaction 2: Countdown Timer
-        // Setting a sample date relative to the current location (New Delhi, 2026)
-        const eventDate = new Date("October 24, 2026 19:00:00").getTime();
-
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = eventDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<h3>The Celebration Has Begun!</h3>";
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.classList.replace('music-playing', 'music-paused');
+            } else {
+                bgMusic.play();
+                musicBtn.classList.replace('music-paused', 'music-playing');
             }
+            isPlaying = !isPlaying;
+        }
+
+        // --- 2. Advanced Scroll Reveal Observer ---
+        function initScrollObserver() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+            reveals.forEach(reveal => observer.observe(reveal));
+        }
+
+        // --- 3. Countdown Timer ---
+        const eventDate = new Date("October 24, 2026 19:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const dist = eventDate - now;
+            
+            document.getElementById("days").innerText = String(Math.floor(dist / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById("hours").innerText = String(Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById("mins").innerText = String(Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById("secs").innerText = String(Math.floor((dist % (1000 * 60)) / 1000)).padStart(2, '0');
         }, 1000);
 
-        // UI Interaction 3: RSVP Form Handling
-        function submitRSVP(e) {
-            e.preventDefault();
-            // In a real scenario, this would send data to a backend or Google Sheet
-            alert("Thank you! Your RSVP has been received by Saurabh & Shalini.");
-            e.target.reset();
+        // --- 4. High-Performance Canvas Particle System (Gold Dust) ---
+        function initParticles() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particlesArray = [];
+            const numberOfParticles = window.innerWidth < 768 ? 40 : 80; // Optimize for mobile
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * -0.5 - 0.1; // Float upwards
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.y < 0) {
+                        this.y = canvas.height;
+                        this.x = Math.random() * canvas.width;
+                    }
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // --- 5. Professional "Add to Calendar" Logic (.ics generator) ---
+        function downloadICS() {
+            const icsData = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Saurabh & Shalini Engagement//EN
+BEGIN:VEVENT
+UID:engagement-saurabh-shalini
+DTSTAMP:20261024T133000Z
+DTSTART:20261024T133000Z
+DTEND:20261024T173000Z
+SUMMARY:Engagement Ceremony of Saurabh & Shalini
+LOCATION:The Grand Taj Palace, New Delhi
+DESCRIPTION:Join us to celebrate the new chapter of our lives!
+END:VEVENT
+END:VCALENDAR`;
+            
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Saurabh_Shalini_Engagement.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
