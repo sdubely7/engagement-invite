@@ -10,15 +10,13 @@
             --gold: #D4AF37;
             --gold-light: #f3d778;
             --cream: #FDFBF7;
-            --glass: rgba(6, 20, 46, 0.75); /* Semi-transparent navy so background shows through */
-            --glass-border: rgba(212, 175, 55, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body, html {
             background-color: #030a17;
-            /* Using your full flower.png as the master background for the entire page */
+            /* Full flower.png master background */
             background-image: url('flower.png');
             background-size: cover;
             background-position: center;
@@ -29,7 +27,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Canvas Particle Background (Subtle Gold Dust over your frame) --- */
+        /* --- Canvas Particle Background --- */
         #particle-canvas {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -82,7 +80,6 @@
             border-radius: 50%;
             background: rgba(6, 20, 46, 0.9);
             border: 1px solid var(--gold);
-            backdrop-filter: blur(10px);
             z-index: 100;
             cursor: pointer;
             display: flex; justify-content: center; align-items: center;
@@ -94,7 +91,7 @@
         .music-paused { animation-play-state: paused !important; text-decoration: line-through; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* --- Layout & Glassmorphism --- */
+        /* --- Layout --- */
         .main-content {
             position: relative; z-index: 10;
             display: none;
@@ -108,28 +105,24 @@
             text-align: center;
         }
 
-        .glass-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem 2rem;
+        /* Clean Card Layout without conflicting boxes */
+        .invite-card {
             width: 100%;
             max-width: 450px;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            padding: 2rem 1rem;
+            text-align: center;
         }
 
         /* --- Typography --- */
         h1, h2 { font-family: 'Playfair Display', serif; color: var(--gold); }
-        .cursive { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: var(--gold-light); font-weight: normal; margin: -10px 0;}
-        .subtitle { font-size: 0.95rem; letter-spacing: 3px; text-transform: uppercase; color: var(--cream); margin-bottom: 1rem; font-weight: 300; }
+        .cursive { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: var(--gold-light); font-weight: normal; margin: -5px 0;}
+        .subtitle { font-size: 0.95rem; letter-spacing: 3px; text-transform: uppercase; color: var(--cream); margin-bottom: 0.8rem; font-weight: 300; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         
-        .names-main { font-size: 2.8rem; margin-top: 1rem; line-height: 1.2; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);}
-        .divider { width: 60px; height: 1px; background: var(--gold); margin: 1.5rem auto; }
+        .names-main { font-size: 2.8rem; margin-top: 0.8rem; line-height: 1.2; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);}
+        .divider { width: 60px; height: 1px; background: var(--gold); margin: 1.2rem auto; }
 
         /* --- Advanced Scroll Animations --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.2s; }
         .delay-2 { transition-delay: 0.4s; }
@@ -138,9 +131,10 @@
         /* --- Countdown --- */
         .countdown { display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.5rem; }
         .time-box {
-            background: rgba(3, 10, 23, 0.6); border: 1px solid var(--gold);
+            background: rgba(3, 10, 23, 0.7); border: 1px solid var(--gold);
             border-radius: 10px; width: 65px; height: 75px;
             display: flex; flex-direction: column; justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
         .time-box span { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); }
         .time-box p { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
@@ -152,11 +146,12 @@
             font-weight: 600; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
             border-radius: 5px; cursor: pointer; text-decoration: none;
             display: inline-block; margin-top: 1.2rem; transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
-        .action-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4); }
+        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); }
         
-        .outline-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
-        .outline-btn:hover { background: rgba(212, 175, 55, 0.15); }
+        .outline-btn { background: rgba(3, 10, 23, 0.7); border: 1px solid var(--gold); color: var(--gold); }
+        .outline-btn:hover { background: rgba(212, 175, 55, 0.2); }
 
     </style>
 </head>
@@ -182,15 +177,15 @@
         
         <!-- PAGE 1: HERO -->
         <section id="hero">
-            <div class="glass-card reveal">
-                <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">💍</div>
+            <div class="invite-card reveal">
+                <div style="font-size: 3.5rem; margin-bottom: 0.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.8);">💍</div>
                 <p class="subtitle reveal delay-1">We're delighted to celebrate this</p>
                 <div class="cursive reveal delay-2">new chapter</div>
                 <p class="subtitle reveal delay-1" style="margin-top: 0.8rem;">with you!</p>
                 
                 <div class="divider reveal delay-2"></div>
                 
-                <p class="reveal delay-2" style="font-style: italic; font-size: 0.85rem; opacity: 0.8;">invited by</p>
+                <p class="reveal delay-2" style="font-style: italic; font-size: 0.85rem; opacity: 0.9; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">invited by</p>
                 <h1 class="names-main reveal delay-3">Saurabh<br><span style="font-size: 1.8rem; color: var(--gold-light);">&</span><br>Shalini</h1>
             </div>
             <div class="reveal delay-3" style="position: absolute; bottom: 20px; font-size: 0.75rem; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); animation: pulseBtn 2s infinite;">Scroll Down ↓</div>
@@ -198,20 +193,20 @@
 
         <!-- PAGE 2: THE DETAILS -->
         <section id="details">
-            <div class="glass-card reveal">
+            <div class="invite-card reveal">
                 <h2 style="font-size: 2.2rem; margin-bottom: 0.3rem;">The Celebration</h2>
                 <div class="cursive" style="font-size: 2.2rem; margin-bottom: 1.5rem;">Ring Ceremony</div>
                 
-                <div class="reveal delay-1">
-                    <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem;">When</h3>
-                    <p style="font-size: 1rem;">Saturday, October 24, 2026<br>7:00 PM Onwards</p>
+                <div class="reveal delay-1" style="margin-bottom: 1.2rem;">
+                    <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">When</h3>
+                    <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Saturday, October 24, 2026<br>7:00 PM Onwards</p>
                 </div>
                 
                 <div class="divider reveal delay-1" style="width: 30px;"></div>
                 
-                <div class="reveal delay-2">
-                    <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem;">Where</h3>
-                    <p style="font-size: 1rem;">The Grand Taj Palace<br>Diplomatic Enclave, Chanakyapuri<br>New Delhi, India</p>
+                <div class="reveal delay-2" style="margin-bottom: 1.2rem;">
+                    <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Where</h3>
+                    <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">The Grand Taj Palace<br>Diplomatic Enclave, Chanakyapuri<br>New Delhi, India</p>
                 </div>
 
                 <div class="reveal delay-3" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
@@ -223,9 +218,9 @@
 
         <!-- PAGE 3: COUNTDOWN & RSVP -->
         <section id="rsvp">
-            <div class="glass-card reveal">
+            <div class="invite-card reveal">
                 <h2 style="font-size: 2rem;">Counting Down</h2>
-                <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 3px;">Until the moment we say "Yes"</p>
+                <p style="opacity: 0.9; font-size: 0.9rem; margin-top: 3px; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Until the moment we say "Yes"</p>
                 
                 <div class="countdown reveal delay-1" id="countdown">
                     <div class="time-box"><span id="days">00</span><p>Days</p></div>
@@ -237,7 +232,7 @@
                 <div class="divider reveal delay-2" style="margin: 1.2rem auto;"></div>
 
                 <h2 class="reveal delay-2" style="font-size: 1.8rem; margin-bottom: 0.5rem;">Bless Us</h2>
-                <p class="reveal delay-2" style="font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4;">Your presence will make our special day complete. Please share your blessings with us.</p>
+                <p class="reveal delay-2" style="font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Your presence will make our special day complete. Please share your blessings with us.</p>
                 
                 <a href="https://wa.me/919911572571?text=Hi%20Saurabh%20%26%20Shalini!%20Congratulations%20on%20the%20engagement.%20I%20will%20be%20there!" target="_blank" class="action-btn reveal delay-3" style="width: 100%; border-radius: 30px;">RSVP Here</a>
             </div>
