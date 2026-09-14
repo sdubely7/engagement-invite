@@ -7,68 +7,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --navy: #06142e;
-            --navy-dark: #030a17;
             --gold: #D4AF37;
             --gold-light: #f3d778;
             --cream: #FDFBF7;
-            --glass: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(212, 175, 55, 0.15);
+            --glass: rgba(6, 20, 46, 0.75); /* Semi-transparent navy so background shows through */
+            --glass-border: rgba(212, 175, 55, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body, html {
-            background-color: var(--navy);
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 4px 4px;
+            background-color: #030a17;
+            /* Using your full flower.png as the master background for the entire page */
+            background-image: url('flower.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--cream);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* --- Professional CSS Floral Corner Ornaments --- */
-        .floral-corner {
-            position: fixed;
-            width: 120px; height: 120px;
-            pointer-events: none;
-            z-index: 5;
-            opacity: 0.85;
-            border: 2px solid var(--gold);
-        }
-        .top-left { 
-            top: 15px; left: 15px; 
-            border-right: none; border-bottom: none; 
-            border-top-left-radius: 15px;
-            background: radial-gradient(circle at top left, rgba(212,175,55,0.3) 0%, transparent 70%);
-        }
-        .top-right { 
-            top: 15px; right: 15px; 
-            border-left: none; border-bottom: none; 
-            border-top-right-radius: 15px;
-            background: radial-gradient(circle at top right, rgba(212,175,55,0.3) 0%, transparent 70%);
-        }
-        .bottom-left { 
-            bottom: 15px; left: 15px; 
-            border-right: none; border-top: none; 
-            border-bottom-left-radius: 15px;
-            background: radial-gradient(circle at bottom left, rgba(212,175,55,0.3) 0%, transparent 70%);
-        }
-        .bottom-right { 
-            bottom: 15px; right: 15px; 
-            border-left: none; border-top: none; 
-            border-bottom-right-radius: 15px;
-            background: radial-gradient(circle at bottom right, rgba(212,175,55,0.3) 0%, transparent 70%);
-        }
-
-        /* --- Canvas Particle Background --- */
+        /* --- Canvas Particle Background (Subtle Gold Dust over your frame) --- */
         #particle-canvas {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0;
+            z-index: 1;
             pointer-events: none;
         }
 
@@ -76,11 +41,10 @@
         #welcome-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: var(--navy);
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 4px 4px;
+            background-color: #06142e;
+            background-image: url('flower.png');
+            background-size: cover;
+            background-position: center;
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -89,7 +53,7 @@
             transition: opacity 1s ease, visibility 1s ease;
         }
         .open-btn {
-            background: transparent;
+            background: rgba(6, 20, 46, 0.85);
             border: 1px solid var(--gold);
             color: var(--gold);
             padding: 15px 40px;
@@ -100,7 +64,7 @@
             cursor: pointer;
             border-radius: 30px;
             transition: all 0.4s ease;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
             animation: pulseBtn 2s infinite;
         }
         @keyframes pulseBtn {
@@ -108,7 +72,7 @@
             70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
             100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
-        .open-btn:hover { background: var(--gold); color: var(--navy); }
+        .open-btn:hover { background: var(--gold); color: #06142e; }
 
         /* --- Floating Audio Player --- */
         #music-toggle {
@@ -116,7 +80,7 @@
             bottom: 30px; right: 30px;
             width: 50px; height: 50px;
             border-radius: 50%;
-            background: var(--glass);
+            background: rgba(6, 20, 46, 0.9);
             border: 1px solid var(--gold);
             backdrop-filter: blur(10px);
             z-index: 100;
@@ -147,22 +111,22 @@
         .glass-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 3rem 2rem;
             width: 100%;
-            max-width: 500px;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+            max-width: 450px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
         }
 
         /* --- Typography --- */
         h1, h2 { font-family: 'Playfair Display', serif; color: var(--gold); }
-        .cursive { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--gold-light); font-weight: normal; margin: -10px 0;}
-        .subtitle { font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; color: var(--cream); margin-bottom: 1.5rem; font-weight: 300; }
+        .cursive { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: var(--gold-light); font-weight: normal; margin: -10px 0;}
+        .subtitle { font-size: 0.95rem; letter-spacing: 3px; text-transform: uppercase; color: var(--cream); margin-bottom: 1rem; font-weight: 300; }
         
-        .names-main { font-size: 3rem; margin-top: 1rem; line-height: 1.2; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);}
-        .divider { width: 60px; height: 1px; background: var(--gold); margin: 2rem auto; }
+        .names-main { font-size: 2.8rem; margin-top: 1rem; line-height: 1.2; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);}
+        .divider { width: 60px; height: 1px; background: var(--gold); margin: 1.5rem auto; }
 
         /* --- Advanced Scroll Animations --- */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
@@ -172,44 +136,38 @@
         .delay-3 { transition-delay: 0.6s; }
 
         /* --- Countdown --- */
-        .countdown { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .countdown { display: flex; gap: 0.8rem; justify-content: center; margin-top: 1.5rem; }
         .time-box {
-            background: rgba(0,0,0,0.2); border: 1px solid var(--gold);
-            border-radius: 10px; width: 70px; height: 80px;
+            background: rgba(3, 10, 23, 0.6); border: 1px solid var(--gold);
+            border-radius: 10px; width: 65px; height: 75px;
             display: flex; flex-direction: column; justify-content: center;
         }
-        .time-box span { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); }
-        .time-box p { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
+        .time-box span { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); }
+        .time-box p { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- Buttons --- */
         .action-btn {
-            background: var(--gold); color: var(--navy);
-            border: none; padding: 15px 30px; font-family: 'Montserrat', sans-serif;
-            font-weight: 600; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;
+            background: var(--gold); color: #06142e;
+            border: none; padding: 14px 28px; font-family: 'Montserrat', sans-serif;
+            font-weight: 600; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
             border-radius: 5px; cursor: pointer; text-decoration: none;
-            display: inline-block; margin-top: 1.5rem; transition: transform 0.3s ease;
+            display: inline-block; margin-top: 1.2rem; transition: transform 0.3s ease;
         }
-        .action-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); }
+        .action-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4); }
         
         .outline-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
-        .outline-btn:hover { background: rgba(212, 175, 55, 0.1); }
+        .outline-btn:hover { background: rgba(212, 175, 55, 0.15); }
 
     </style>
 </head>
 <body>
-
-    <!-- Professional Ornate Corners -->
-    <div class="floral-corner top-left"></div>
-    <div class="floral-corner top-right"></div>
-    <div class="floral-corner bottom-left"></div>
-    <div class="floral-corner bottom-right"></div>
 
     <!-- Particle Background -->
     <canvas id="particle-canvas"></canvas>
 
     <!-- Welcome / Unboxing Screen -->
     <div id="welcome-screen">
-        <h2 style="margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 2px;">You're Invited</h2>
+        <h2 style="margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 2px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);">You're Invited</h2>
         <button class="open-btn" onclick="startExperience()">Open Invitation</button>
     </div>
 
@@ -225,35 +183,35 @@
         <!-- PAGE 1: HERO -->
         <section id="hero">
             <div class="glass-card reveal">
-                <div style="font-size: 4rem; margin-bottom: 1rem;">💍</div>
+                <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">💍</div>
                 <p class="subtitle reveal delay-1">We're delighted to celebrate this</p>
                 <div class="cursive reveal delay-2">new chapter</div>
-                <p class="subtitle reveal delay-1" style="margin-top: 1rem;">with you!</p>
+                <p class="subtitle reveal delay-1" style="margin-top: 0.8rem;">with you!</p>
                 
                 <div class="divider reveal delay-2"></div>
                 
-                <p class="reveal delay-2" style="font-style: italic; font-size: 0.9rem; opacity: 0.8;">invited by</p>
-                <h1 class="names-main reveal delay-3">Saurabh<br><span style="font-size: 2rem; color: var(--gold-light);">&</span><br>Shalini</h1>
+                <p class="reveal delay-2" style="font-style: italic; font-size: 0.85rem; opacity: 0.8;">invited by</p>
+                <h1 class="names-main reveal delay-3">Saurabh<br><span style="font-size: 1.8rem; color: var(--gold-light);">&</span><br>Shalini</h1>
             </div>
-            <div class="reveal delay-3" style="position: absolute; bottom: 30px; font-size: 0.8rem; letter-spacing: 2px; animation: pulseBtn 2s infinite;">Scroll Down ↓</div>
+            <div class="reveal delay-3" style="position: absolute; bottom: 20px; font-size: 0.75rem; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); animation: pulseBtn 2s infinite;">Scroll Down ↓</div>
         </section>
 
         <!-- PAGE 2: THE DETAILS -->
         <section id="details">
             <div class="glass-card reveal">
-                <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">The Celebration</h2>
-                <div class="cursive" style="font-size: 2.5rem; margin-bottom: 2rem;">Ring Ceremony</div>
+                <h2 style="font-size: 2.2rem; margin-bottom: 0.3rem;">The Celebration</h2>
+                <div class="cursive" style="font-size: 2.2rem; margin-bottom: 1.5rem;">Ring Ceremony</div>
                 
                 <div class="reveal delay-1">
-                    <h3 style="color: var(--gold-light); font-size: 1.2rem; margin-bottom: 0.5rem;">When</h3>
-                    <p style="font-size: 1.1rem;">Saturday, October 24, 2026<br>7:00 PM Onwards</p>
+                    <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem;">When</h3>
+                    <p style="font-size: 1rem;">Saturday, October 24, 2026<br>7:00 PM Onwards</p>
                 </div>
                 
                 <div class="divider reveal delay-1" style="width: 30px;"></div>
                 
                 <div class="reveal delay-2">
-                    <h3 style="color: var(--gold-light); font-size: 1.2rem; margin-bottom: 0.5rem;">Where</h3>
-                    <p style="font-size: 1.1rem;">The Grand Taj Palace<br>Diplomatic Enclave, Chanakyapuri<br>New Delhi, India</p>
+                    <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem;">Where</h3>
+                    <p style="font-size: 1rem;">The Grand Taj Palace<br>Diplomatic Enclave, Chanakyapuri<br>New Delhi, India</p>
                 </div>
 
                 <div class="reveal delay-3" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
@@ -266,8 +224,8 @@
         <!-- PAGE 3: COUNTDOWN & RSVP -->
         <section id="rsvp">
             <div class="glass-card reveal">
-                <h2>Counting Down</h2>
-                <p style="opacity: 0.8; margin-top: 5px;">Until the moment we say "Yes"</p>
+                <h2 style="font-size: 2rem;">Counting Down</h2>
+                <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 3px;">Until the moment we say "Yes"</p>
                 
                 <div class="countdown reveal delay-1" id="countdown">
                     <div class="time-box"><span id="days">00</span><p>Days</p></div>
@@ -276,10 +234,10 @@
                     <div class="time-box"><span id="secs">00</span><p>Secs</p></div>
                 </div>
 
-                <div class="divider reveal delay-2"></div>
+                <div class="divider reveal delay-2" style="margin: 1.2rem auto;"></div>
 
-                <h2 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 1rem;">Bless Us</h2>
-                <p class="reveal delay-2" style="font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5;">Your presence will make our special day complete. Please share your blessings with us.</p>
+                <h2 class="reveal delay-2" style="font-size: 1.8rem; margin-bottom: 0.5rem;">Bless Us</h2>
+                <p class="reveal delay-2" style="font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4;">Your presence will make our special day complete. Please share your blessings with us.</p>
                 
                 <a href="https://wa.me/919911572571?text=Hi%20Saurabh%20%26%20Shalini!%20Congratulations%20on%20the%20engagement.%20I%20will%20be%20there!" target="_blank" class="action-btn reveal delay-3" style="width: 100%; border-radius: 30px;">RSVP Here</a>
             </div>
@@ -351,16 +309,16 @@
             canvas.height = window.innerHeight;
 
             let particlesArray = [];
-            const numberOfParticles = window.innerWidth < 768 ? 40 : 80;
+            const numberOfParticles = window.innerWidth < 768 ? 30 : 60;
 
             class Particle {
                 constructor() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * canvas.height;
                     this.size = Math.random() * 2;
-                    this.speedX = Math.random() * 0.5 - 0.25;
-                    this.speedY = Math.random() * -0.5 - 0.1;
-                    this.opacity = Math.random() * 0.5 + 0.1;
+                    this.speedX = Math.random() * 0.4 - 0.2;
+                    this.speedY = Math.random() * -0.4 - 0.1;
+                    this.opacity = Math.random() * 0.4 + 0.1;
                 }
                 update() {
                     this.x += this.speedX;
@@ -404,12 +362,12 @@ VERSION:2.0
 PRODID:-//Saurabh & Shalini Engagement//EN
 BEGIN:VEVENT
 UID:engagement-saurabh-shalini
-DTSTAMP:20261015T083000Z
-DTSTART:20261015T083000Z
-DTEND:20261015T173000Z
-SUMMARY: Engagement Ceremony of Saurabh & Shalini
-LOCATION: The Shanai Rimjhim Garden, Lalitpur
-DESCRIPTION: Join us to celebrate the new chapter of our lives!
+DTSTAMP:20261024T133000Z
+DTSTART:20261024T133000Z
+DTEND:20261024T173000Z
+SUMMARY:Engagement Ceremony of Saurabh & Shalini
+LOCATION:The Grand Taj Palace, New Delhi
+DESCRIPTION:Join us to celebrate the new chapter of our lives!
 END:VEVENT
 END:VCALENDAR`;
             
