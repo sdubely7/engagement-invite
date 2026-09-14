@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurabh & Shalini | Engagement Invitation</title>
+    <!-- Elegant Fonts to match the provided image -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Base Variables based on image_8c8a20.jpg */
+        :root {
+            --navy-blue: #08183A;
+            --gold: #D4AF37;
+            --cream: #FDFBF7;
+            --font-serif: 'Playfair Display', serif;
+            --font-cursive: 'Great Vibes', cursive;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            background-color: var(--navy-blue);
+            color: var(--cream);
+            font-family: var(--font-sans);
+            overflow: hidden; /* Hide main scrollbar for custom snap scrolling */
+        }
+
+        /* Container for Scroll Snapping (Mobile App Feel) */
+        .invitation-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* Common Page Styling */
+        .page {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 2rem;
+            text-align: center;
+            /* Subtle texture overlay */
+            background-image: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 100%);
+        }
+
+        /* Floral Corner Decor Placeholders */
+        .floral-corner {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            opacity: 0.6;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .top-left { top: 10px; left: 10px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); border-radius: 20px 0 0 0; }
+        .top-right { top: 10px; right: 10px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); border-radius: 0 20px 0 0; }
+        .bottom-left { bottom: 10px; left: 10px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); border-radius: 0 0 0 20px; }
+        .bottom-right { bottom: 10px; right: 10px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); border-radius: 0 0 20px 0; }
+
+        /* --- Page 1: The Cover (Based on your image) --- */
+        .ring-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .cover-text {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--gold);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+        .cover-cursive {
+            font-family: var(--font-cursive);
+            font-size: 2.8rem;
+            color: var(--gold);
+            display: block;
+            margin: -5px 0;
+        }
+        .divider {
+            width: 50px;
+            height: 1px;
+            background-color: var(--gold);
+            margin: 1.5rem auto;
+        }
+        .invited-by {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+        .couple-names {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        /* --- Page 2: The Couple --- */
+        .section-title {
+            font-family: var(--font-cursive);
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+        .profile-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .profile {
+            text-align: center;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            background-color: rgba(255,255,255,0.1);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        .profile-name {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--cream);
+        }
+
+        /* --- Page 3: Event Details --- */
+        .event-details h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .event-details p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        /* --- Page 4: Interactive Countdown --- */
+        .countdown {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .time-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 70px;
+        }
+        .time-box span {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--gold);
+            display: block;
+        }
+        .time-box p {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        /* --- Page 5: RSVP --- */
+        .rsvp-form input, .rsvp-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--cream);
+            font-family: var(--font-sans);
+            outline: none;
+        }
+        .rsvp-form input::placeholder {
+            color: rgba(253, 251, 247, 0.5);
+        }
+        .btn {
+            background: var(--gold);
+            color: var(--navy-blue);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-family: var(--font-serif);
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--gold);
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-15px) translateX(-50%); }
+            60% { transform: translateY(-7px) translateX(-50%); }
+        }
+
+        /* Animations triggered on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-container" id="container">
+        
+        <!-- PAGE 1: COVER (Recreated from image_8c8a20.jpg) -->
+        <section class="page" id="page1">
+            <div class="floral-corner top-left"></div>
+            <div class="floral-corner top-right"></div>
+            <div class="floral-corner bottom-left"></div>
+            <div class="floral-corner bottom-right"></div>
+            
+            <div class="fade-in">
+                <!-- Placeholder for the beautiful diamond ring in the image -->
+                <div class="ring-icon">💍</div>
+                
+                <p class="cover-text">
+                    We're delighted to celebrate this<br>
+                    <span class="cover-cursive">new chapter</span><br>
+                    with you !
+                </p>
+                
+                <div class="divider"></div>
+                
+                <p class="invited-by">invited by</p>
+                <h1 class="couple-names">Saurabh & Shalini</h1>
+            </div>
+            <div class="scroll-indicator">↓</div>
+        </section>
+
+        <!-- PAGE 2: THE COUPLE -->
+        <section class="page" id="page2">
+            <div class="fade-in">
+                <h2 class="section-title">Two Souls, One Heart</h2>
+                <div class="profile-container">
+                    <div class="profile">
+                        <div class="profile-img">🤵🏽‍♂️</div>
+                        <h3 class="profile-name">Saurabh</h3>
+                    </div>
+                    <div class="profile">
+                        <div style="font-family: var(--font-cursive); font-size: 3rem; color: var(--gold); line-height: 120px;">&</div>
+                    </div>
+                    <div class="profile">
+                        <div class="profile-img">👰🏽‍♀️</div>
+                        <h3 class="profile-name">Shalini</h3>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; font-weight: 300; max-width: 400px; line-height: 1.6;">
+                    Together with their families, they invite you to share in their joy as they exchange rings and promises.
+                </p>
+            </div>
+            <div class="scroll-indicator">↓</div>
+        </section>
+
+        <!-- PAGE 3: EVENT DETAILS -->
+        <section class="page" id="page3">
+            <div class="fade-in event-details">
+                <h2 class="section-title">The Celebration</h2>
+                
+                <h3>Ring Ceremony</h3>
+                <p>
+                    <strong>Saturday, October 24, 2026</strong><br>
+                    7:00 PM Onwards
+                </p>
+                
+                <div class="divider"></div>
+                
+                <h3>Venue</h3>
+                <p>
+                    <strong>The Grand Taj Palace</strong><br>
+                    Diplomatic Enclave, Chanakyapuri<br>
+                    New Delhi, India
+                </p>
+                <br>
+                <!-- Interactive button to open Maps -->
+                <a href="https://maps.google.com" target="_blank" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px;">View on Google Maps</a>
+            </div>
+            <div class="scroll-indicator">↓</div>
+        </section>
+
+        <!-- PAGE 4: COUNTDOWN -->
+        <section class="page" id="page4">
+            <div class="fade-in">
+                <h2 class="section-title">Counting Down</h2>
+                <p>Until the moment we say "Yes"</p>
+                
+                <div class="countdown" id="countdown">
+                    <div class="time-box"><span id="days">00</span><p>Days</p></div>
+                    <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
+                    <div class="time-box"><span id="minutes">00</span><p>Mins</p></div>
+                    <div class="time-box"><span id="seconds">00</span><p>Secs</p></div>
+                </div>
+            </div>
+            <div class="scroll-indicator">↓</div>
+        </section>
+
+        <!-- PAGE 5: RSVP -->
+        <section class="page" id="page5">
+            <div class="fade-in" style="width: 100%; max-width: 400px;">
+                <h2 class="section-title">RSVP</h2>
+                <p style="margin-bottom: 2rem;">Please let us know if you can make it!</p>
+                
+                <form class="rsvp-form" onsubmit="submitRSVP(event)">
+                    <input type="text" placeholder="Your Full Name" required>
+                    <select required>
+                        <option value="" disabled selected>Will you attend?</option>
+                        <option value="yes">Joyfully Accept</option>
+                        <option value="no">Regretfully Decline</option>
+                    </select>
+                    <input type="number" placeholder="Number of Guests" min="1" max="5">
+                    <button type="submit" class="btn">Send RSVP</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // UI Interaction 1: Intersection Observer for scroll animations
+        const faders = document.querySelectorAll('.fade-in');
+        
+        const appearOptions = {
+            threshold: 0.3,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // UI Interaction 2: Countdown Timer
+        // Setting a sample date relative to the current location (New Delhi, 2026)
+        const eventDate = new Date("October 24, 2026 19:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "<h3>The Celebration Has Begun!</h3>";
+            }
+        }, 1000);
+
+        // UI Interaction 3: RSVP Form Handling
+        function submitRSVP(e) {
+            e.preventDefault();
+            // In a real scenario, this would send data to a backend or Google Sheet
+            alert("Thank you! Your RSVP has been received by Saurabh & Shalini.");
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
