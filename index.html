@@ -218,18 +218,18 @@
                 
                 <div class="reveal delay-1" style="margin-bottom: 1.2rem;">
                     <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">When</h3>
-                    <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Saturday, October 24, 2026<br>7:00 PM Onwards</p>
+                    <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">,Thrusday October 15, 2026<br>2:00 PM Onwards</p>
                 </div>
                 
                 <div class="divider reveal delay-1" style="width: 30px;"></div>
                 
                 <div class="reveal delay-2" style="margin-bottom: 1.2rem;">
                     <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Where</h3>
-                    <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">The Grand Taj Palace<br>Diplomatic Enclave, Chanakyapuri<br>New Delhi, India</p>
+                    <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">The Shanai Rimjhim Garden<br>Civil Lines, Lalitpur<br>Uttar Pradesh, India</p>
                 </div>
 
                 <div class="reveal delay-3" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                    <a href="https://maps.google.com/?q=Taj+Palace+New+Delhi" target="_blank" class="action-btn outline-btn">View Map</a>
+                    <a href="https://maps.google.com/?q=Rimjhim+Garden+Civil+Lines+Lalitpur+Uttar+Pradesh" target="_blank" class="action-btn outline-btn">View Map</a>
                     <button onclick="downloadICS()" class="action-btn">Save the Date</button>
                 </div>
             </div>
@@ -305,16 +305,34 @@
             reveals.forEach(reveal => observer.observe(reveal));
         }
 
-        const eventDate = new Date("October 24, 2026 19:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const dist = eventDate - now;
-            
-            document.getElementById("days").innerText = String(Math.floor(dist / (1000 * 60 * 60 * 24))).padStart(2, '0');
-            document.getElementById("hours").innerText = String(Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-            document.getElementById("mins").innerText = String(Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-            document.getElementById("secs").innerText = String(Math.floor((dist % (1000 * 60)) / 1000)).padStart(2, '0');
-        }, 1000);
+       const eventDate = new Date("2026-10-15T14:00:00+05:30").getTime();
+
+const countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const dist = eventDate - now;
+
+    // If the event has arrived or passed
+    if (dist < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("mins").innerText = "00";
+        document.getElementById("secs").innerText = "00";
+        
+        // Optional: Update a container or message on your page
+        const countdownContainer = document.getElementById("countdown");
+        if (countdownContainer) {
+            countdownContainer.innerHTML = "<p style='color: var(--gold); font-family: Playfair Display, serif; font-size: 1.5rem;'>The Celebration Has Begun!</p>";
+        }
+        return;
+    }
+
+    // Normal countdown calculation
+    document.getElementById("days").innerText = String(Math.floor(dist / (1000 * 60 * 60 * 24))).padStart(2, '0');
+    document.getElementById("hours").innerText = String(Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+    document.getElementById("mins").innerText = String(Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+    document.getElementById("secs").innerText = String(Math.floor((dist % (1000 * 60)) / 1000)).padStart(2, '0');
+}, 1000);
 
         function initParticles() {
             const canvas = document.getElementById('particle-canvas');
@@ -376,12 +394,12 @@ VERSION:2.0
 PRODID:-//Saurabh & Shalini Engagement//EN
 BEGIN:VEVENT
 UID:engagement-saurabh-shalini
-DTSTAMP:20261024T133000Z
-DTSTART:20261024T133000Z
-DTEND:20261024T173000Z
-SUMMARY:Engagement Ceremony of Saurabh & Shalini
-LOCATION:The Grand Taj Palace, New Delhi
-DESCRIPTION:Join us to celebrate the new chapter of our lives!
+DTSTAMP:20261015T083000Z
+DTSTART:20261015T083000Z
+DTEND:20261015T173000Z
+SUMMARY: Engagement Ceremony of Saurabh & Shalini
+LOCATION: The Shanai Rimjhim Garden, Civil Lines, Lalitpur
+DESCRIPTION: Join us to celebrate the new chapter of our lives!
 END:VEVENT
 END:VCALENDAR`;
             
