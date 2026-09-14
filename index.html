@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Matched exact deep navy from 1.jpg */
             --navy: #06142e;
             --navy-dark: #030a17;
             --gold: #D4AF37;
@@ -21,7 +20,6 @@
 
         body, html {
             background-color: var(--navy);
-            /* Recreating the fine fabric/grid texture from 1.jpg */
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
@@ -32,22 +30,39 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Floral Corner Accents (Ref 1.jpg) --- */
+        /* --- Professional CSS Floral Corner Ornaments --- */
         .floral-corner {
             position: fixed;
-            width: 250px; height: 250px;
+            width: 120px; height: 120px;
             pointer-events: none;
-            z-index: 1;
-            opacity: 0.8;
-            /* Placeholder: You can upload your own transparent floral PNG to GitHub and link it here */
-            background-image: url('flower.png');
-            background-repeat: no-repeat;
+            z-index: 5;
+            opacity: 0.85;
+            border: 2px solid var(--gold);
         }
-        /* Using a CSS gradient fallback that mimics the gold floral clusters if no image is present */
-        .top-left { top: -20px; left: -20px; background: radial-gradient(circle at top left, rgba(212,175,55,0.15) 0%, transparent 60%); }
-        .top-right { top: -20px; right: -20px; background: radial-gradient(circle at top right, rgba(212,175,55,0.15) 0%, transparent 60%); }
-        .bottom-left { bottom: -20px; left: -20px; background: radial-gradient(circle at bottom left, rgba(212,175,55,0.15) 0%, transparent 60%); }
-        .bottom-right { bottom: -20px; right: -20px; background: radial-gradient(circle at bottom right, rgba(212,175,55,0.15) 0%, transparent 60%); }
+        .top-left { 
+            top: 15px; left: 15px; 
+            border-right: none; border-bottom: none; 
+            border-top-left-radius: 15px;
+            background: radial-gradient(circle at top left, rgba(212,175,55,0.3) 0%, transparent 70%);
+        }
+        .top-right { 
+            top: 15px; right: 15px; 
+            border-left: none; border-bottom: none; 
+            border-top-right-radius: 15px;
+            background: radial-gradient(circle at top right, rgba(212,175,55,0.3) 0%, transparent 70%);
+        }
+        .bottom-left { 
+            bottom: 15px; left: 15px; 
+            border-right: none; border-top: none; 
+            border-bottom-left-radius: 15px;
+            background: radial-gradient(circle at bottom left, rgba(212,175,55,0.3) 0%, transparent 70%);
+        }
+        .bottom-right { 
+            bottom: 15px; right: 15px; 
+            border-left: none; border-top: none; 
+            border-bottom-right-radius: 15px;
+            background: radial-gradient(circle at bottom right, rgba(212,175,55,0.3) 0%, transparent 70%);
+        }
 
         /* --- Canvas Particle Background --- */
         #particle-canvas {
@@ -183,7 +198,7 @@
 </head>
 <body>
 
-    <!-- Floral Corners -->
+    <!-- Professional Ornate Corners -->
     <div class="floral-corner top-left"></div>
     <div class="floral-corner top-right"></div>
     <div class="floral-corner bottom-left"></div>
@@ -266,14 +281,12 @@
                 <h2 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 1rem;">Bless Us</h2>
                 <p class="reveal delay-2" style="font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5;">Your presence will make our special day complete. Please share your blessings with us.</p>
                 
-                <!-- Replace with your actual Google Form or WhatsApp link -->
                 <a href="https://wa.me/919911572571?text=Hi%20Saurabh%20%26%20Shalini!%20Congratulations%20on%20the%20engagement.%20I%20will%20be%20there!" target="_blank" class="action-btn reveal delay-3" style="width: 100%; border-radius: 30px;">RSVP Here</a>
             </div>
         </section>
     </div>
 
     <script>
-        // --- 1. Experience & Audio Manager ---
         const bgMusic = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-toggle');
         let isPlaying = false;
@@ -307,7 +320,6 @@
             isPlaying = !isPlaying;
         }
 
-        // --- 2. Advanced Scroll Reveal Observer ---
         function initScrollObserver() {
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
@@ -321,7 +333,6 @@
             reveals.forEach(reveal => observer.observe(reveal));
         }
 
-        // --- 3. Countdown Timer ---
         const eventDate = new Date("October 24, 2026 19:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -333,7 +344,6 @@
             document.getElementById("secs").innerText = String(Math.floor((dist % (1000 * 60)) / 1000)).padStart(2, '0');
         }, 1000);
 
-        // --- 4. High-Performance Canvas Particle System (Gold Dust) ---
         function initParticles() {
             const canvas = document.getElementById('particle-canvas');
             const ctx = canvas.getContext('2d');
@@ -388,19 +398,18 @@
             });
         }
 
-        // --- 5. Professional "Add to Calendar" Logic (.ics generator) ---
         function downloadICS() {
             const icsData = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Saurabh & Shalini Engagement//EN
 BEGIN:VEVENT
 UID:engagement-saurabh-shalini
-DTSTAMP:20261024T133000Z
-DTSTART:20261024T133000Z
-DTEND:20261024T173000Z
-SUMMARY:Engagement Ceremony of Saurabh & Shalini
-LOCATION:The Grand Taj Palace, New Delhi
-DESCRIPTION:Join us to celebrate the new chapter of our lives!
+DTSTAMP:20261015T083000Z
+DTSTART:20261015T083000Z
+DTEND:20261015T173000Z
+SUMMARY: Engagement Ceremony of Saurabh & Shalini
+LOCATION: The Shanai Rimjhim Garden, Lalitpur
+DESCRIPTION: Join us to celebrate the new chapter of our lives!
 END:VEVENT
 END:VCALENDAR`;
             
