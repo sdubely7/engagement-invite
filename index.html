@@ -121,6 +121,22 @@
         .names-main { font-size: 2.8rem; margin-top: 0.8rem; line-height: 1.2; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);}
         .divider { width: 60px; height: 1px; background: var(--gold); margin: 1.2rem auto; }
 
+        /* --- Animated Ring Styling --- */
+        .ring-animation-container {
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .animated-ring {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+            object-fit: cover;
+        }
+
         /* --- Advanced Scroll Animations --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -168,7 +184,7 @@
 
     <!-- Background Audio -->
     <audio id="bg-music" loop>
-        <source src=leberch-piano-513745.mp3 type="audio/mpeg">
+        <source src="leberch-piano-513745.mp3" type="audio/mpeg">
     </audio>
     <div id="music-toggle" class="music-paused" onclick="toggleMusic()">🎵</div>
 
