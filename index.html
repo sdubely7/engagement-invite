@@ -7,24 +7,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --navy: #08183A;
-            --navy-dark: #040b1c;
+            /* Matched exact deep navy from 1.jpg */
+            --navy: #06142e;
+            --navy-dark: #030a17;
             --gold: #D4AF37;
             --gold-light: #f3d778;
             --cream: #FDFBF7;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(212, 175, 55, 0.2);
+            --glass: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(212, 175, 55, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body, html {
-            background-color: var(--navy-dark);
+            background-color: var(--navy);
+            /* Recreating the fine fabric/grid texture from 1.jpg */
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 4px 4px;
             color: var(--cream);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
+
+        /* --- Floral Corner Accents (Ref 1.jpg) --- */
+        .floral-corner {
+            position: fixed;
+            width: 250px; height: 250px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.8;
+            /* Placeholder: You can upload your own transparent floral PNG to GitHub and link it here */
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        /* Using a CSS gradient fallback that mimics the gold floral clusters if no image is present */
+        .top-left { top: -20px; left: -20px; background: radial-gradient(circle at top left, rgba(212,175,55,0.15) 0%, transparent 60%); }
+        .top-right { top: -20px; right: -20px; background: radial-gradient(circle at top right, rgba(212,175,55,0.15) 0%, transparent 60%); }
+        .bottom-left { bottom: -20px; left: -20px; background: radial-gradient(circle at bottom left, rgba(212,175,55,0.15) 0%, transparent 60%); }
+        .bottom-right { bottom: -20px; right: -20px; background: radial-gradient(circle at bottom right, rgba(212,175,55,0.15) 0%, transparent 60%); }
 
         /* --- Canvas Particle Background --- */
         #particle-canvas {
@@ -32,14 +55,17 @@
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: 0;
             pointer-events: none;
-            background: radial-gradient(circle at center, var(--navy) 0%, var(--navy-dark) 100%);
         }
 
         /* --- Welcome Envelope Screen --- */
         #welcome-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: var(--navy);
+            background-color: var(--navy);
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 4px 4px;
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -92,7 +118,7 @@
         /* --- Layout & Glassmorphism --- */
         .main-content {
             position: relative; z-index: 10;
-            display: none; /* Hidden until welcome screen is clicked */
+            display: none;
         }
         
         section {
@@ -106,13 +132,13 @@
         .glass-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-radius: 20px;
             padding: 3rem 2rem;
             width: 100%;
             max-width: 500px;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
         }
 
         /* --- Typography --- */
@@ -157,6 +183,12 @@
 </head>
 <body>
 
+    <!-- Floral Corners -->
+    <div class="floral-corner top-left"></div>
+    <div class="floral-corner top-right"></div>
+    <div class="floral-corner bottom-left"></div>
+    <div class="floral-corner bottom-right"></div>
+
     <!-- Particle Background -->
     <canvas id="particle-canvas"></canvas>
 
@@ -166,7 +198,7 @@
         <button class="open-btn" onclick="startExperience()">Open Invitation</button>
     </div>
 
-    <!-- Background Audio (Placeholder for a romantic instrumental track) -->
+    <!-- Background Audio -->
     <audio id="bg-music" loop>
         <source src="https://cdn.pixabay.com/download/audio/2022/02/07/audio_651a2d4807.mp3?filename=romantic-piano-112135.mp3" type="audio/mpeg">
     </audio>
@@ -211,7 +243,6 @@
 
                 <div class="reveal delay-3" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                     <a href="https://maps.google.com/?q=Taj+Palace+New+Delhi" target="_blank" class="action-btn outline-btn">View Map</a>
-                    <!-- Pro feature: Generate calendar invite -->
                     <button onclick="downloadICS()" class="action-btn">Save the Date</button>
                 </div>
             </div>
@@ -235,7 +266,8 @@
                 <h2 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 1rem;">Bless Us</h2>
                 <p class="reveal delay-2" style="font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5;">Your presence will make our special day complete. Please share your blessings with us.</p>
                 
-                <a href="https://wa.me/?text=Hi%20Saurabh%20%26%20Shalini!%20Congratulations%20on%20the%20engagement.%20I%20will%20be%20there!" target="_blank" class="action-btn reveal delay-3" style="width: 100%; border-radius: 30px;">RSVP via WhatsApp</a>
+                <!-- Replace with your actual Google Form or WhatsApp link -->
+                <a href="https://wa.me/919911572571?text=Hi%20Saurabh%20%26%20Shalini!%20Congratulations%20on%20the%20engagement.%20I%20will%20be%20there!" target="_blank" class="action-btn reveal delay-3" style="width: 100%; border-radius: 30px;">RSVP Here</a>
             </div>
         </section>
     </div>
@@ -253,11 +285,9 @@
                 document.getElementById('main-content').style.display = 'block';
                 document.getElementById('music-toggle').style.opacity = '1';
                 
-                // Initialize animations and particles once loaded
                 initScrollObserver();
                 initParticles();
                 
-                // Try playing music (Browsers allow this because it's inside an onClick event)
                 bgMusic.volume = 0.4;
                 bgMusic.play().then(() => {
                     isPlaying = true;
@@ -311,7 +341,7 @@
             canvas.height = window.innerHeight;
 
             let particlesArray = [];
-            const numberOfParticles = window.innerWidth < 768 ? 40 : 80; // Optimize for mobile
+            const numberOfParticles = window.innerWidth < 768 ? 40 : 80;
 
             class Particle {
                 constructor() {
@@ -319,7 +349,7 @@
                     this.y = Math.random() * canvas.height;
                     this.size = Math.random() * 2;
                     this.speedX = Math.random() * 0.5 - 0.25;
-                    this.speedY = Math.random() * -0.5 - 0.1; // Float upwards
+                    this.speedY = Math.random() * -0.5 - 0.1;
                     this.opacity = Math.random() * 0.5 + 0.1;
                 }
                 update() {
