@@ -14,14 +14,8 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-  overscroll-behavior-y: none;
-  background-color: #0f172a; /* match your page background */
-  margin: 0;
-  padding: 0;
-}, html {
+        body, html {
             background-color: #030a17;
-            /* Full flower.png master background */
             background-image: url('flower.png');
             background-size: cover;
             background-position: center;
@@ -29,6 +23,14 @@
             color: var(--cream);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            overscroll-behavior-y: none;
+        }
+
+        /* --- Smooth Scroll Snap Container (Reel / App Experience) --- */
+        .scroll-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
         }
 
@@ -96,25 +98,31 @@
         .music-paused { animation-play-state: paused !important; text-decoration: line-through; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* --- Layout --- */
+        /* --- Layout & Snap Sections --- */
         .main-content {
             position: relative; z-index: 10;
             display: none;
         }
         
         section {
-            min-height: 100vh;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            padding: 4rem 2rem;
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            padding: 2rem;
             text-align: center;
+            box-sizing: border-box;
+            position: relative;
         }
 
-        /* Clean Card Layout without conflicting boxes */
         .invite-card {
             width: 100%;
             max-width: 450px;
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
             text-align: center;
         }
 
@@ -173,7 +181,6 @@
         
         .outline-btn { background: rgba(3, 10, 23, 0.7); border: 1px solid var(--gold); color: var(--gold); }
         .outline-btn:hover { background: rgba(212, 175, 55, 0.2); }
-
     </style>
 </head>
 <body>
@@ -193,74 +200,75 @@
     </audio>
     <div id="music-toggle" class="music-paused" onclick="toggleMusic()">🎵</div>
 
-    <!-- Main Content -->
-    <div class="main-content" id="main-content">
-        
-        <!-- PAGE 1: HERO -->
-        <section id="hero">
-            <div class="invite-card reveal">
-                <!-- Replaced the emoji with your animated graphic -->
-                <div class="ring-animation-container reveal">
-                    <img src="ring.gif" alt="Wedding Rings" class="animated-ring">
+    <!-- Main Content Wrapped in Scroll Snap Container -->
+    <div class="scroll-container" id="scroll-container">
+        <div class="main-content" id="main-content">
+            
+            <!-- PAGE 1: HERO -->
+            <section id="hero">
+                <div class="invite-card reveal">
+                    <div class="ring-animation-container reveal">
+                        <img src="ring.gif" alt="Wedding Rings" class="animated-ring">
+                    </div>
+                    <p class="subtitle reveal delay-1">We're delighted to celebrate this</p>
+                    <div class="cursive reveal delay-2">new chapter</div>
+                    <p class="subtitle reveal delay-1" style="margin-top: 0.8rem;">with you!</p>
+                    
+                    <div class="divider reveal delay-2"></div>
+                    
+                    <p class="reveal delay-2" style="font-style: italic; font-size: 0.85rem; opacity: 0.9; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">invited by</p>
+                    <h1 class="names-main reveal delay-3">Saurabh<br><span style="font-size: 1.8rem; color: var(--gold-light);">&</span><br>Shalini</h1>
                 </div>
-                <p class="subtitle reveal delay-1">We're delighted to celebrate this</p>
-                <div class="cursive reveal delay-2">new chapter</div>
-                <p class="subtitle reveal delay-1" style="margin-top: 0.8rem;">with you!</p>
-                
-                <div class="divider reveal delay-2"></div>
-                
-                <p class="reveal delay-2" style="font-style: italic; font-size: 0.85rem; opacity: 0.9; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">invited by</p>
-                <h1 class="names-main reveal delay-3">Saurabh<br><span style="font-size: 1.8rem; color: var(--gold-light);">&</span><br>Shalini</h1>
-            </div>
-            <div class="reveal delay-3" style="position: absolute; bottom: 20px; font-size: 0.75rem; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); animation: pulseBtn 2s infinite;">Scroll Down ↓</div>
-        </section>
+                <div class="reveal delay-3" style="position: absolute; bottom: 20px; font-size: 0.75rem; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); animation: pulseBtn 2s infinite;">Scroll Down ↓</div>
+            </section>
 
-        <!-- PAGE 2: THE DETAILS -->
-        <section id="details">
-            <div class="invite-card reveal">
-                <h2 style="font-size: 2.2rem; margin-bottom: 0.3rem;">The Celebration</h2>
-                <div class="cursive" style="font-size: 2.2rem; margin-bottom: 1.5rem;">Ring Ceremony</div>
-                
-                <div class="reveal delay-1" style="margin-bottom: 1.2rem;">
-                    <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">When</h3>
-                    <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">,Thrusday October 15, 2026<br>2:00 PM Onwards</p>
+            <!-- PAGE 2: THE DETAILS -->
+            <section id="details">
+                <div class="invite-card reveal">
+                    <h2 style="font-size: 2.2rem; margin-bottom: 0.3rem;">The Celebration</h2>
+                    <div class="cursive" style="font-size: 2.2rem; margin-bottom: 1.5rem;">Ring Ceremony</div>
+                    
+                    <div class="reveal delay-1" style="margin-bottom: 1.2rem;">
+                        <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">When</h3>
+                        <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Thursday, October 15, 2026<br>2:00 PM Onwards</p>
+                    </div>
+                    
+                    <div class="divider reveal delay-1" style="width: 30px;"></div>
+                    
+                    <div class="reveal delay-2" style="margin-bottom: 1.2rem;">
+                        <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Where</h3>
+                        <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">The Shanai Rimjhim Garden<br>Civil Lines, Lalitpur<br>Uttar Pradesh, India</p>
+                    </div>
+
+                    <div class="reveal delay-3" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <a href="https://maps.google.com/?q=Rimjhim+Garden+Civil+Lines+Lalitpur+Uttar+Pradesh" target="_blank" class="action-btn outline-btn">View Map</a>
+                        <button onclick="downloadICS()" class="action-btn">Save the Date</button>
+                    </div>
                 </div>
-                
-                <div class="divider reveal delay-1" style="width: 30px;"></div>
-                
-                <div class="reveal delay-2" style="margin-bottom: 1.2rem;">
-                    <h3 style="color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.3rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Where</h3>
-                    <p style="font-size: 1rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">The Shanai Rimjhim Garden<br>Civil Lines, Lalitpur<br>Uttar Pradesh, India</p>
+            </section>
+
+            <!-- PAGE 3: COUNTDOWN & RSVP -->
+            <section id="rsvp">
+                <div class="invite-card reveal">
+                    <h2 style="font-size: 2rem;">Counting Down</h2>
+                    <p style="opacity: 0.9; font-size: 0.9rem; margin-top: 3px; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Until the moment we say "Yes"</p>
+                    
+                    <div class="countdown reveal delay-1" id="countdown">
+                        <div class="time-box"><span id="days">00</span><p>Days</p></div>
+                        <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
+                        <div class="time-box"><span id="mins">00</span><p>Mins</p></div>
+                        <div class="time-box"><span id="secs">00</span><p>Secs</p></div>
+                    </div>
+
+                    <div class="divider reveal delay-2" style="margin: 1.2rem auto;"></div>
+
+                    <h2 class="reveal delay-2" style="font-size: 1.8rem; margin-bottom: 0.5rem;">Bless Us</h2>
+                    <p class="reveal delay-2" style="font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Your presence will make our special day complete. Please share your blessings with us.</p>
+                    
+                    <a href="https://wa.me/919911572571?text=Hi%20Saurabh%20%26%20Shalini!%20Congratulations%20on%20the%20engagement.%20I%20will%20be%20there!" target="_blank" class="action-btn reveal delay-3" style="width: 100%; border-radius: 30px;">RSVP Here</a>
                 </div>
-
-                <div class="reveal delay-3" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                    <a href="https://maps.google.com/?q=Rimjhim+Garden+Civil+Lines+Lalitpur+Uttar+Pradesh" target="_blank" class="action-btn outline-btn">View Map</a>
-                    <button onclick="downloadICS()" class="action-btn">Save the Date</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 3: COUNTDOWN & RSVP -->
-        <section id="rsvp">
-            <div class="invite-card reveal">
-                <h2 style="font-size: 2rem;">Counting Down</h2>
-                <p style="opacity: 0.9; font-size: 0.9rem; margin-top: 3px; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Until the moment we say "Yes"</p>
-                
-                <div class="countdown reveal delay-1" id="countdown">
-                    <div class="time-box"><span id="days">00</span><p>Days</p></div>
-                    <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
-                    <div class="time-box"><span id="mins">00</span><p>Mins</p></div>
-                    <div class="time-box"><span id="secs">00</span><p>Secs</p></div>
-                </div>
-
-                <div class="divider reveal delay-2" style="margin: 1.2rem auto;"></div>
-
-                <h2 class="reveal delay-2" style="font-size: 1.8rem; margin-bottom: 0.5rem;">Bless Us</h2>
-                <p class="reveal delay-2" style="font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Your presence will make our special day complete. Please share your blessings with us.</p>
-                
-                <a href="https://wa.me/919911572571?text=Hi%20Saurabh%20%26%20Shalini!%20Congratulations%20on%20the%20engagement.%20I%20will%20be%20there!" target="_blank" class="action-btn reveal delay-3" style="width: 100%; border-radius: 30px;">RSVP Here</a>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 
     <script>
@@ -310,34 +318,31 @@
             reveals.forEach(reveal => observer.observe(reveal));
         }
 
-       const eventDate = new Date("2026-10-15T14:00:00+05:30").getTime();
+        const eventDate = new Date("2026-10-15T14:00:00+05:30").getTime();
 
-const countdownInterval = setInterval(() => {
-    const now = new Date().getTime();
-    const dist = eventDate - now;
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const dist = eventDate - now;
 
-    // If the event has arrived or passed
-    if (dist < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById("days").innerText = "00";
-        document.getElementById("hours").innerText = "00";
-        document.getElementById("mins").innerText = "00";
-        document.getElementById("secs").innerText = "00";
-        
-        // Optional: Update a container or message on your page
-        const countdownContainer = document.getElementById("countdown");
-        if (countdownContainer) {
-            countdownContainer.innerHTML = "<p style='color: var(--gold); font-family: Playfair Display, serif; font-size: 1.5rem;'>The Celebration Has Begun!</p>";
-        }
-        return;
-    }
+            if (dist < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("mins").innerText = "00";
+                document.getElementById("secs").innerText = "00";
+                
+                const countdownContainer = document.getElementById("countdown");
+                if (countdownContainer) {
+                    countdownContainer.innerHTML = "<p style='color: var(--gold); font-family: Playfair Display, serif; font-size: 1.5rem;'>The Celebration Has Begun!</p>";
+                }
+                return;
+            }
 
-    // Normal countdown calculation
-    document.getElementById("days").innerText = String(Math.floor(dist / (1000 * 60 * 60 * 24))).padStart(2, '0');
-    document.getElementById("hours").innerText = String(Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-    document.getElementById("mins").innerText = String(Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-    document.getElementById("secs").innerText = String(Math.floor((dist % (1000 * 60)) / 1000)).padStart(2, '0');
-}, 1000);
+            document.getElementById("days").innerText = String(Math.floor(dist / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById("hours").innerText = String(Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById("mins").innerText = String(Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById("secs").innerText = String(Math.floor((dist % (1000 * 60)) / 1000)).padStart(2, '0');
+        }, 1000);
 
         function initParticles() {
             const canvas = document.getElementById('particle-canvas');
