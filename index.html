@@ -126,6 +126,27 @@
             text-align: center;
         }
 
+        /* --- Portrait Card Styling for Slide 3 --- */
+        .portrait-card {
+            width: 100%;
+            max-width: 320px;
+            padding: 1rem;
+            text-align: center;
+            background: rgba(3, 10, 23, 0.65);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .couple-portrait {
+            width: 100%;
+            height: auto;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--gold);
+            margin-bottom: 0.8rem;
+        }
+
         /* --- Typography --- */
         h1, h2 { font-family: 'Playfair Display', serif; color: var(--gold); }
         .cursive { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: var(--gold-light); font-weight: normal; margin: -5px 0;}
@@ -255,7 +276,16 @@
                 </div>
             </section>
 
-            <!-- PAGE 3: COUNTDOWN & RSVP -->
+            <!-- PAGE 3: COUPLE PORTRAIT -->
+            <section id="portrait">
+                <div class="portrait-card reveal">
+                    <img src="couple.jpg" alt="Shalini and Saurabh" class="couple-portrait">
+                    <h2 style="font-size: 1.6rem; margin-top: 0.3rem;">Shalini & Saurabh</h2>
+                    <p style="font-size: 0.8rem; font-style: italic; opacity: 0.9; margin-top: 0.2rem; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Together is a beautiful place to be</p>
+                </div>
+            </section>
+
+            <!-- PAGE 4: COUNTDOWN & RSVP -->
             <section id="rsvp">
                 <div class="invite-card reveal">
                     <h2 style="font-size: 2rem;">Counting Down</h2>
@@ -415,9 +445,9 @@ UID:engagement-saurabh-shalini
 DTSTAMP:20261015T083000Z
 DTSTART:20261015T083000Z
 DTEND:20261015T173000Z
-SUMMARY: Engagement Ceremony of Saurabh & Shalini
-LOCATION: The Shanai Rimjhim Garden, Civil Lines, Lalitpur
-DESCRIPTION: Join us to celebrate the new chapter of our lives!
+SUMMARY:Engagement Ceremony of Saurabh & Shalini
+LOCATION:The Shanai Rimjhim Garden, Civil Lines, Lalitpur
+DESCRIPTION:Join us to celebrate the new chapter of our lives!
 END:VEVENT
 END:VCALENDAR`;
             
